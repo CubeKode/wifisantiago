@@ -57,9 +57,10 @@
 # </tbody>
 # </table>
  
+require 'csv'
 
 module CSVDataReader
-  require 'csv'
+#  require 'csv'
 
   class Generator < Jekyll::Generator
     def generate(site)
