@@ -1,0 +1,55 @@
+---
+layout: fullwidth
+---
+
+{% assign total = site.data.wifidata.rows %}
+{% assign open = 0 %}
+{% assign wpa = 0 %}
+{% assign wep = 0 %}
+{% assign wps = 0 %}
+
+{% for row in site.data.wifidata.content %}
+{% case row[2] %}
+{% when 'WEP' %}
+{% assign wep = wep | plus: 1 %}
+{% when 'WPA-PSK' %}
+{% assign wpa = wpa | plus: 1 %}
+{% when 'WPA-EAP' %}
+{% assign wpa = wpa | plus: 1 %}
+{% else %}
+{% assign open = open | plus: 1 %}
+{% endcase %}
+{% if row[4] contains 'WPS' %}
+{% assign wps = wps | plus: 1 %}
+{% endif %}
+{% endfor %}
+
+<div class="home">
+
+  <h1 class="text-center" id="many"><b>{{ total }}</b> redes encontradas</h1>
+
+  <div class="row datas">
+    <input type="hidden" id="total" value="{{ total }}">
+    <div class="col-md-3 col-sm-6 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+        <div class="counter" id="wpa" data-color="#2A9E79" data-value="{{ wpa }}"></div>
+        <h2 class="text-center">WPA</h2>
+    </div>
+    <div class="col-md-3 col-sm-6 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+        <div class="counter" id="wep" data-color="#FFC23C" data-value="{{ wep }}"></div>
+        <h2 class="text-center">WEP</h2>
+    </div>
+    <div class="col-md-3 col-sm-6 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+        <div class="counter" id="open" data-color="#F05E35" data-value="{{ open }}"></div>
+        <h2 class="text-center">Aberta</h2>
+    </div>
+    <div class="col-md-3 col-sm-6 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+        <div class="counter" id="wps" data-color="#16304B" data-value="{{ wps }}"></div>
+        <h2 class="text-center">WPS</h2>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1"><a href="/wifidata.csv" class="btn btn-success" style="width:100%;"><i class="cb cb-fw cb-cloud-download"></i> Baixar CSV</a></div>
+  </div>
+
+</div>
