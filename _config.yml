@@ -4,7 +4,8 @@ description: >
   Quais os protocolos de criptografia de redes wifi é o mais utilizado
   em uma cidade pequena? WEP ou WPA? quem utiliza WPS? Capturamos diariamente
   as redes wifi disponíveis na cidade de Santiago e disponibilizamos publicamente.
-baseurl: ""
+baseurl: "/wifisantiago"
+url: "http://labs.cubekode.com"
 exclude: ["node_modules", "bower_components", "bower.json", "Gemfile.lock", "Gemfile",
   "Gruntfile.js", "package.json", "src"]
 markdown: kramdown
